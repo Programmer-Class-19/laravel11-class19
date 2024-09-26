@@ -93,7 +93,7 @@
                                             <h2 class="text-xl font-semibold text-black dark:text-white">Documentation</h2>
 
                                             <p class="mt-4 text-sm/relaxed">
-                                               Masud testing laavel 11 jadi repo
+                                               Masud testing laravel 11 jadi repo
                                             </p>
                                         </div>
                                     </div>
