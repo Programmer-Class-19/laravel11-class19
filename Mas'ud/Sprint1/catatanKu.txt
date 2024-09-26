@@ -1,0 +1,10 @@
+Pembahasan : Laravel 
+
+Devinisi : 
+"laraver is a web  aplication framework  with expressive, elegant syntax."
+"laraver adalah kerangka aplikasi web dengan sintaksis yang ekspresif dan elegan."
+ 
+Basic :
+Struktur Folder : Mengatur fungsi dari isi folder.
+Route : Routething System mengatur penjaluran dalam aplikasi
+View : menampilkan halaman untuk di View oleh user 
