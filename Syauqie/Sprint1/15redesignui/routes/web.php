@@ -4,8 +4,6 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Arr;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page', 'titles' => 'Home']);
