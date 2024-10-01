@@ -3,6 +3,11 @@
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
+
+// Route::get('/', function () {
+//     return view('welcome'); 
+// });
+
 Route::get('/', function () {
     return view('Home', ['title' => 'Home Page'] );
 });
@@ -11,6 +16,10 @@ Route::get('/about', function () {
     return view('about', [ 'nama' => "Mas'ud", 'title' => 'About'] );
 });
 
+
+Route::get('/blog', function () {
+    return view('blog', ['title' => 'blog'] );
+});
 
 
 Route::get('/posts', function () {
@@ -31,8 +40,8 @@ Route::get('/posts', function () {
     ]]);
 });
 
-Route::get('/posts/{id}', function($id) {
-    $posts = [
+Route::get('/posts/{title}', function($title) {
+    $posts = 
         [
             [
                 'id' => 1,
@@ -48,9 +57,17 @@ Route::get('/posts/{id}', function($id) {
             ]
             
         
-    ]];
+            ];
     
-    $post = Arr::first();
+            
+            
+        $post = Arr::first($posts, function($post) use ($title) { 
+                // dd($post);
+        return $post['id'];
+    });
+
+    
+
 });
 
 
