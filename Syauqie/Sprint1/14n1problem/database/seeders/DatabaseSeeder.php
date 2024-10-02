@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        
+
 
         // Category::create([
         //     'name' => 'Web Design',
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         //     'slug' => 'judul-artikel-1',
         //     'body' => 'Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in most web projects'
         // ]);
-        $this->call(CategorySeeder::class, UserSeeder::class);
+        $this->call([CategorySeeder::class, UserSeeder::class]);
         Post::factory(100)->recycle([
             Category::all(),
             User::all()

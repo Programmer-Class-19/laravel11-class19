@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('author_id')->constrained(
-                table: 'users',
-                indexName: 'posts_author_id'
+                table: 'users'
             );
             $table->string('slug')->unique();
             $table->text('body');
