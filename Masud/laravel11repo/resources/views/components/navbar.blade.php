@@ -3,7 +3,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <img src="img/Design.jpeg" alt="" width="55">
+            <img src="img/Design.jpeg" alt="M a s ' u d" width="55">
             {{-- <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company"> --}}
           </div>
           <div class="hidden md:block">

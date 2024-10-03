@@ -12,8 +12,6 @@
      </div>
 
      <p class="my-4 font-light">{{ ( $post ['body'] ) }}</p>
-       
-     <img src="{{ $post ['image'] }}" alt="M a s ' u d" width="200">
 
      <a href="/posts" class="font-medium text-blue-500 hover:underline"> &laquo; Back To Posts  </a>
     
