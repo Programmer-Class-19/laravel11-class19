@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Post;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,24 +9,16 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('about', ['nama' => 'Abu Fayyadh', 'title' => 'Home Page']);
+    return view('about', ['nama' => 'Abu Fayyadh', 'title' => 'About Us']);
 });
 
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'Blog', 'posts' => [
-        [
-            'titile' => 'Judul Artikel 1',
-            'author' => 'Khodhir',
-            'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur commodi eveniet ipsum dolores fuga hic saepe corporis, suscipit facilis rem ab animi mollitia iste voluptatum. Fuga natus soluta optio minus?'
+    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]);
+});
+Route::get('/posts/{slug}', function ($slug) {
 
-        ],
-        [
-            'titile' => 'Judul Artikel 2',
-            'author' => 'Khodhir',
-            'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum veniam consequuntur commodi praesentium nesciunt aliquid, fugit, illum ipsum quibusdam blanditiis corporis explicabo, voluptatem possimus? Voluptatibus, quisquam! Libero, nisi ab. Architecto?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, hic officiis. Recusandae nobis vero veritatis deserunt, dolorum architecto qui, vel dignissimos corporis ipsam velit nihil temporibus maiores, ullam autem placeat.'
-
-        ]
-    ]]);
+    $post = Post::find($slug);
+    return view('post', ['title' => 'Single Post', 'post' => $post]);
 });
 
 Route::get('/contact', function () {
