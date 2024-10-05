@@ -15,7 +15,6 @@ class Post
                 'title' => 'Judul Artikel 1',
                 'author' => 'Khodhir',
                 'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur commodi eveniet ipsum dolores fuga hic saepe corporis, suscipit facilis rem ab animi mollitia iste voluptatum. Fuga natus soluta optio minus?'
-
             ],
             [
                 'id' => 2,
