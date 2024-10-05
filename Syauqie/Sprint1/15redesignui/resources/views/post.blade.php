@@ -25,8 +25,13 @@
             <article
                 class="mx-auto w-full max-w-4xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                 <header class="mb-4 lg:mb-6 not-format">
-                    <a href="/posts" class=" font-medium text-sm text-blue-600 hover:underline">&laquo; Back to all
-                        posts</a>
+                    <a href="/posts" class="inline-flex items-center font-medium text-sm text-blue-600 transition duration-300 ease-in-out transform hover:text-blue-800 hover:scale-105 group">
+                        <svg class="w-4 h-4 mr-2 transition-transform duration-300 ease-in-out group-hover:-translate-x-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 111.414 1.414L3.414 10H17a1 1 0 110 2H3.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        Back to all posts
+                    </a>
+
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                             <img class="mr-4 w-16 h-16 rounded-full" src="/img/Screenshot 2024-09-22 232209.png"
@@ -40,10 +45,11 @@
                                 </p>
                                 <a href="/posts?category={{ $post->category->slug }}">
                                     <span
-                                        class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                                        class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 transition duration-300 ease-in-out transform hover:bg-{{ $post->category->color }}-200 hover:scale-105">
                                         {{ $post->category->name }}
                                     </span>
                                 </a>
+
                             </div>
                         </div>
                     </address>

@@ -1,6 +1,6 @@
 <body class="h-full">
     <div class="min-h-full">
-        <x-title>{{ $title }}</x-title>
+        <x-title></x-title>
         <x-navbar></x-navbar>
         <x-header>{{ $title }}</x-header>
         <main>
