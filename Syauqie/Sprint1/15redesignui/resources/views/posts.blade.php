@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <x-search></x-search>
 
     {{ $posts->links() }}
