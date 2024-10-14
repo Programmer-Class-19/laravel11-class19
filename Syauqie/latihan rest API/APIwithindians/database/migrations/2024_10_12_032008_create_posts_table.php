@@ -13,16 +13,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->foreignId('author_id')->constrained(
-                table: 'users',
-                indexName: 'posts_author_id'
-            )->onDelete('cascade');
-            $table->foreignId('category_id')->constrained(
-                table: 'categories',
-                indexName: 'posts_category_id'
-            )->onDelete('cascade');
-            $table->string('slug')->unique();
             $table->text('body');
             $table->timestamps();
         });
