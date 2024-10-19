@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    color: #333;
+}
+ul {
+    list-style-type: none; /* Menghilangkan bullet pada list */
+    padding: 0; /* Menghilangkan padding default */
+}
+li {
+    background: #fff; /* Warna latar belakang putih */
+    margin: 10px 0; /* Margin antara item */
+    padding: 15px; /* Padding dalam item */
+    border-radius: 5px; /* Sudut melengkung */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    transition: background 0.3s; /* Transisi saat hover */
+}
+li:hover {
+    background: #e0e0e0; /* Warna latar belakang saat hover */
+}

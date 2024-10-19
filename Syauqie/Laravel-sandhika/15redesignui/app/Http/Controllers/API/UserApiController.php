@@ -30,7 +30,6 @@ class UserApiController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username|max:255',
             'email' => 'required|email|unique:users,email|max:255',
-            'email_verified_at' => 'nullable|date',
             'password' => 'required|string|min:8'
         ]);
 
@@ -43,13 +42,23 @@ class UserApiController extends Controller
             ], 400);
         }
 
-        $users = User::create($request->all());
+        // Hash password dan tambahkan email_verified_at
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'email_verified_at' => now(), // Isi email_verified_at dengan waktu sekarang
+            'password' => bcrypt($request->password), // Hash password
+        ]);
+
         return response()->json([
             'status' => true,
             'message' => 'Berhasil dimasukkan',
-            'data' => $users
+            'data' => $user
         ], 201);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -76,14 +85,12 @@ class UserApiController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|unique:users,username|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'email_verified_at' => 'nullable|date',
-            'password' => 'required|string|min:8'
+            'name' => 'string|max:255',
+            'username' => 'string|max:255|unique:users,username,' . $id,
+            'email' => 'email|max:255|unique:users,email,' . $id,
+            'password' => 'sometimes|string|min:8', // Password tidak wajib, hanya jika diisi
         ]);
 
-        // Jika validasi gagal, kembalikan respons error
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
@@ -91,12 +98,22 @@ class UserApiController extends Controller
                 'errors' => $validator->errors()
             ], 400);
         }
-        $users = User::findOrFail($id);
-        $users->update($request->all());
+
+        $user = User::findOrFail($id);
+
+        // Cek apakah password diisi, jika ya maka hash sebelum di-update
+        $data = $request->all();
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        // Update user
+        $user->update($data);
+
         return response()->json([
             'status' => true,
-            'message' => 'Berhasil diperbaiki',
-            'data' => $users
+            'message' => 'Berhasil diperbarui',
+            'data' => $user
         ], 200);
     }
 
@@ -104,18 +121,17 @@ class UserApiController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    // Temukan user, jika tidak ditemukan otomatis akan mengembalikan 404
-    $user = User::findOrFail($id);
+    {
+        // Temukan user, jika tidak ditemukan otomatis akan mengembalikan 404
+        $user = User::findOrFail($id);
 
-    // Hapus semua post terkait user ini menggunakan relasi
-    $user->posts()->delete();
+        // Hapus semua post terkait user ini menggunakan relasi
+        $user->posts()->delete();
 
-    // Hapus user
-    $user->delete();
+        // Hapus user
+        $user->delete();
 
-    // Kembalikan respons sukses dengan status 204 No Content
-    return response()->json(['message' => 'User deleted successfully'], 200);
-}
-
+        // Kembalikan respons sukses dengan status 204 No Content
+        return response()->json(['message' => 'User deleted successfully'], 200);
+    }
 }

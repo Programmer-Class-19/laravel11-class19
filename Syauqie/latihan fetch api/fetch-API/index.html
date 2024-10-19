@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>CRUD Example</h1>
+
+  <!-- Form Input -->
+  <form class="form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="hidden" id="userId" name="id">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Notifikasi -->
+  <div id="notification" class="notification"></div>
+
+
+  <!-- Data Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody">
+      <!-- Data users akan ditampilkan di sini -->
+    </tbody>
+  </table>
+
+  <script src="crud.js"></script>
+</body>
+</html>

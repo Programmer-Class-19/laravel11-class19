@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
         ]);
-        User::factory(5)->create();
+        User::factory(10)->create();
     }
 }
