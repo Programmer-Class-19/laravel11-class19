@@ -15,7 +15,10 @@
                 <a href="{{ url('auth-login') }}"><i class="fas fa-user"></i><span>Login</span></a>
             </li>
             <li class="nav-item dropdown {{ $type_menu === 'posts' ? 'active' : '' }}">
-                <a href="{{ url('posts') }}"><i class="fas fa-book"></i><span>Posts</span></a>
+                <a href="{{ url('posts') }}"><i class="fas fa-star"></i><span>Users</span></a>
+            </li>
+            <li class="nav-item dropdown {{ $type_menu === 'create-article' ? 'active' : '' }}">
+                <a href="{{ url('add-article') }}"><i class="fas fa-book"></i><span>Add Article</span></a>
             </li>
         </ul>
     </aside>

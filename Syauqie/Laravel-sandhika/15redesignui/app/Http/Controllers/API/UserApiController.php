@@ -15,7 +15,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('posts')->get();
         return response()->json(
             ['status' => true, 'data' => $users, 'message' => 'Get Data Success']
         );
@@ -65,7 +65,7 @@ class UserApiController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('posts')->findOrFail($id);
         if (!$user) {
             return response()->json([
                 'status' => false,

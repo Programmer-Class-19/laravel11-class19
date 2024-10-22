@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -13,6 +14,9 @@ Route::get('/', function () {
 Route::get('/auth-login', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
 });
-Route::get('/posts', function () {
-    return view('pages.posts', ['type_menu' => 'posts']);
+Route::get('/add-article', function () {
+    return view('pages.add-article', ['type_menu' => 'add-article']);
 });
+Route::get('/posts', [UserController::class, 'getAllUser']);
+
+
