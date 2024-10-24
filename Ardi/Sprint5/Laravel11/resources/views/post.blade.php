@@ -1,0 +1,16 @@
+<x-layout>
+    <x-slot:title>{{ $title }}</x-slot>
+
+    <h1 class="font-bold text-3xl orange-950">Minecraft, permainan blok yang membuat ketagihan</h1>
+    <br>
+        <article class="py-8 max-w-screen-md">
+                <h3 class="mb-1 text-3xl tracking-tight font-bold text-gray-500">{{ $post ['title'] }}</h3>           
+            <div class="text-base text-emerald-600">
+                <a href="/authors/{{ $post->author->id }}">{{ $post->author->name }}</a> | &#169;{{ $post->created_at->diffForHumans() }}
+            </div>
+            <br>
+            <p class="my 4 font-light">{{ $post['body'] }}</p>
+            <a href="/posts" class="font-medium text-blue-500 hover:underline">&laquo; Balik Lagi Sono Loh</a>
+        </article>       
+    
+</x-layout>
