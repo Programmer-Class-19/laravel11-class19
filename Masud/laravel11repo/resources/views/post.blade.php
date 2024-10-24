@@ -13,6 +13,8 @@
 
      <p class="my-4 font-light">{{ ( $post ['body'] ) }}</p>
 
+     <img src="public/img/download.jpeg" alt="">
+
      <a href="/posts" class="font-medium text-blue-500 hover:underline"> &laquo; Back To Posts  </a>
     
     </article> 

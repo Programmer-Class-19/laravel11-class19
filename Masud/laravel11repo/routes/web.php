@@ -23,9 +23,8 @@ Route::get('/posts', function () {
 });
 
 
-Route::get('/posts/{id}', function($id) {
+Route::get('/posts/{post:slug}', function(post $post) {
 
-    $post = Post::find($id);
      
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 });
@@ -34,3 +33,4 @@ Route::get('/posts/{id}', function($id) {
 Route::get('/contact', function () {
     return view('contact', ['title' => 'Contact']);
 });
+    
