@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fetch API</title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <h1>Daftar User</h1>
+        <ul id="user-list"></ul>
+
+        <script>
+            fetch("http://15redesignui.test/api/v1/user")
+                .then((response) => response.json())
+                .then(({data}) => {
+                    console.log("Data:", data); // Sekarang menggunakan 'data'
+                    let userList = document.getElementById("user-list");
+                    // Pastikan properti 'data' ada dan itu adalah array
+                    if (Array.isArray(data)) {
+                        data.forEach((user) => {
+                            let li = document.createElement("li");
+                            li.textContent = `${user.name} - ${user.email}`;
+                            userList.appendChild(li);
+                        });
+                    } else {
+                        console.error("Data is not in the expected format");
+                    }
+                })
+                .catch((error) => console.error("Error:", error));
+        </script>
+    </body>
+</html>

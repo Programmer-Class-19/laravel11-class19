@@ -1,0 +1,59 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+form {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+}
+input, button {
+  padding: 10px;
+  margin-top: 5px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+button {
+  margin-right: 10px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+.notification {
+  padding: 10px;
+  margin: 10px 0;
+  display: none;
+}
+.success {
+  background-color: #4CAF50;
+  color: white;
+}
+.error {
+  background-color: #f44336;
+  color: white;
+}

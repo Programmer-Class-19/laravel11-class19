@@ -1,0 +1,20 @@
+[
+  {
+    "nama": "syauqie",
+    "umur": 19,
+    "hobby": ["coding", "gaming"],
+    "pembimbing": {
+      "pembimbing 1": "aris",
+      "pembimbing 2": "jahel"
+    }
+  },
+  {
+    "nama": "adang",
+    "umur": 19,
+    "hobby": ["mancing", "ngaji"],
+    "pembimbing": {
+      "pembimbing 1": "radhit",
+      "pembimbing 2": "blaoo"
+    }
+  }
+]
