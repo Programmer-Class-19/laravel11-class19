@@ -42,17 +42,29 @@
 
 
                 <div class="form-group">
-                    <div class="d-block">
-                        <label for="password" class="control-label">Password</label>
-                        <div class="float-right">
-                            <a href="auth-forgot-password.html" class="text-small">
-                                Forgot Password?
-                            </a>
+                    <label for="password">Password</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-lock text-muted"></i>
+                            </div>
                         </div>
-                    </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                    <div class="invalid-feedback">
-                        please fill in your password
+
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" tabindex="2" required>
+
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 
@@ -96,4 +108,5 @@
     <!-- JS Libraies -->
 
     <!-- Page Specific JS File -->
+    <script src="{{ asset('js/hashpassword.js') }}"></script>
 @endpush
