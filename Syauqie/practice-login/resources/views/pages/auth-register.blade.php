@@ -15,30 +15,22 @@
         </div>
 
         <div class="card-body">
-            <form method="POST">
+            <form method="POST" action="{{ route('register') }}">
                 <div class="row">
-                    <div class="form-group col-6">
-                        <label for="frist_name">First Name</label>
-                        <input id="frist_name"
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name"
                             type="text"
-                            class="form-control"
-                            name="frist_name"
+                            class="form-control "
+                            name="name"
                             autofocus>
                     </div>
-                    <div class="form-group col-6">
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name"
-                            type="text"
-                            class="form-control"
-                            name="last_name">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email"
                         type="email"
-                        class="form-control"
+                        class="form-control w-100"
                         name="email">
                     <div class="invalid-feedback">
                     </div>
@@ -66,41 +58,6 @@
                             type="password"
                             class="form-control"
                             name="password-confirm">
-                    </div>
-                </div>
-
-                <div class="form-divider">
-                    Your Home
-                </div>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Country</label>
-                        <select class="form-control selectric">
-                            <option>Indonesia</option>
-                            <option>Palestine</option>
-                            <option>Syria</option>
-                            <option>Malaysia</option>
-                            <option>Thailand</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Province</label>
-                        <select class="form-control selectric">
-                            <option>West Java</option>
-                            <option>East Java</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>City</label>
-                        <input type="text"
-                            class="form-control">
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Postal Code</label>
-                        <input type="text"
-                            class="form-control">
                     </div>
                 </div>
 
