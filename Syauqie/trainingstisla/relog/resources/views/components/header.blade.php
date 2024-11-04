@@ -212,7 +212,12 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+                <div class="dropdown-title">@if (auth()->check())
+                    Logged in {{ auth()->user()->created_at->diffForHumans() }}
+                @else
+                    Kamu Belum Login!
+                @endif
+            </div>
                 <a href="features-profile.html" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
@@ -234,7 +239,7 @@
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="dropdown-item has-icon text-primary"><i class="fas fa-key">
-                        </i> Login</a>
+                        </i>Login</a>
                 @endif
             </div>
         </li>

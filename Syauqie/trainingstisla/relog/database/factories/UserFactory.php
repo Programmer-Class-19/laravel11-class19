@@ -21,13 +21,19 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
+        $jpg = ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg', '/img7.jpg', '/img8.jpg'];
+        $level = [1,2,3,4,5];
         return [
+            // 'invoice_id' => 'SYB' . now()->format('Ymd') . rand(1000, 9999),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'foto' => fake()->randomElement($jpg),
+            'level' => fake()->randomElement($level),
             'password' => static::$password ??= Hash::make('1'),
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
     }
