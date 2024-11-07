@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('ui.create-user');
+        return view('create.create-user');
     }
 
     /**
@@ -45,7 +45,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $id) {
+
+    }
 
     /**
      * Show the form for editing the specified resource.

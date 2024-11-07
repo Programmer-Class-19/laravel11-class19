@@ -8,6 +8,7 @@ class Expenditure extends Model
 {
     protected $fillable = [
         'description',
-        'nominal'
+        'nominal',
+        'user_id'
     ];
 }

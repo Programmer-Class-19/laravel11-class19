@@ -12,21 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->unsignedBigInteger('category_id');
             $table->string('nama_produk', 100);
-            $table->string('merk');
-            $table->string('sku');
-            $table->integer('harga_beli');
+            $table->string('satuan', 50);
+            $table->unsignedBigInteger('harga_beli');
             $table->integer('stok');
-            $table->integer('harga_jual');
-            $table->integer('diskon');
+            $table->unsignedBigInteger('harga_jual');
+            $table->integer('diskon')->default(0);
             $table->timestamps();
 
-            //relasi table kategori sama produk
+            // Relasi ke tabel categories
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
+            // Indeks
+            $table->index('category_id');
         });
     }
+
+
 
     /**
      * Reverse the migrations.

@@ -9,15 +9,76 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{ url('/') }}" class="nav-link"><i class="fas fa-gauge"></i><span>Dashboard</span></a>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Master</li>
+            <li class="nav-item dropdown {{ $type_menu === 'category' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-shop"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('/') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/') }}">Ecommerce</a>
+                    <li class="{{ Request::is('categories') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('categories.index') }}">Kategori</a>
                     </li>
-                    <li class="{{ Request::is('users') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('users') }}">Users</a>
+                    <li class="{{ Request::is('products') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('products.index') }}">Produk</a>
+                    </li>
+                    <li class="{{ Request::is('customers') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Member</a>
+                    </li>
+                    <li class="{{ Request::is('supplier') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Supplier</a>
                     </li>
                 </ul>
             </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Transaksi</li>
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill"></i><span>Transaksi</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('categories') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/') }}">Pengeluaran</a>
+                    </li>
+                    <li class="{{ Request::is('products') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Pembelian</a>
+                    </li>
+                    <li class="{{ Request::is('customers') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Penjualan</a>
+                    </li>
+                    <li class="{{ Request::is('supplier') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Transaksi Lama</a>
+                    </li>
+                    <li class="{{ Request::is('supplier') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Transaksi Baru</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Report</li>
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-pdf"></i><span>Report</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('categories') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/') }}">Laporan</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="menu-header">System</li>
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i><span>System</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('users') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('users') }}">Users</a>
+                    </li>
+                    <li class="{{ Request::is('categories') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/') }}">Pengaturan</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </aside>
 </div>

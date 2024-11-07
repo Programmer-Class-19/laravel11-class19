@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('foto');
-            $table->tinyInteger('level');
+            $table->enum('role', ['admin', 'staff', 'kasir']);
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

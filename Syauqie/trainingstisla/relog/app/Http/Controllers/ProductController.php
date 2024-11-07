@@ -3,34 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Container\Attributes\Log;
+
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category', 'inventorylogs')->paginate(10);
-        return view('ui.dashboard-ecommerce-dashboard', ['products' => $products, 'type_menu' => 'dashboard']);
+        $search = $request->input('search');
+        $query = Product::with('category');
+
+        if ($search) {
+            $query->where('nama_produk', 'like', '%' . $search . '%');
+        }
+
+        $products = $query->paginate(10);
+
+        return view('ui.features-products', [
+            'data' => $products,
+            'type_menu' => 'category',
+            'search' => $search,
+            'isEmpty' => $products->isEmpty(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $category = Category::all();
+        return view('create.create-product', ['type_menu' => 'dashboard', 'data' => $category]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-    {
-        //
+{
+    try {
+        $validateData = $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'nama_produk' => 'required|string|max:225',
+            'satuan' => 'required|string|max:225',
+            'harga_beli' => 'required|integer',
+            'stok' => 'required|integer',
+            'harga_jual' => 'required|integer',
+            'diskon' => 'nullable|integer',
+        ]);
+
+        Product::create($validateData);
+
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
     }
+}
+
+
 
     /**
      * Display the specified resource.
@@ -43,9 +73,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('update.update-product', ['type_menu' => 'dashboard', 'data' => $product, 'categories' => $categories]);
     }
 
     /**

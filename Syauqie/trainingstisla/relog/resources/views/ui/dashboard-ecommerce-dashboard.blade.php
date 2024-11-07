@@ -421,15 +421,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $product)
+                                        {{-- @foreach ($products as $product) --}}
                                             <tr>
                                                 <td><a href="#">1</a></td>
-                                                <td class="font-weight-bold">{{ $product->category->name }}</td>
+                                                {{-- <td class="font-weight-bold">{{ $product->category->name }}</td> --}}
                                                 <td><div class="badge badge-warning">Unpaid</div></td>
                                                 <td>July 19, 2018</td>
                                                 <td><a href="#" class="btn btn-primary btn-sm">Detail</a></td>
                                             </tr>
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

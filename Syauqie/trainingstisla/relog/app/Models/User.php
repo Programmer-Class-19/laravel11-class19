@@ -5,7 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Sales;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,7 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'foto',
-        'level'
+        'role'
     ];
 
     /**
@@ -54,5 +56,9 @@ class User extends Authenticatable
     public function sales(): HasMany
     {
         return $this->hasMany(Sales::class);
+    }
+    public function setting(): HasOne
+    {
+        return $this->hasOne(Setting::class);
     }
 }
