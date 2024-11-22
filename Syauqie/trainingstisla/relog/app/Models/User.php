@@ -6,6 +6,8 @@ namespace App\Models;
 use App\Models\Sales;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\Transaction;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -23,11 +25,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
-        'foto',
-        'role'
     ];
 
     /**
@@ -53,12 +53,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function sales(): HasMany
+    public function transactions(): HasMany
     {
-        return $this->hasMany(Sales::class);
-    }
-    public function setting(): HasOne
-    {
-        return $this->hasOne(Setting::class);
+        return $this->hasMany(Transaction::class);
     }
 }

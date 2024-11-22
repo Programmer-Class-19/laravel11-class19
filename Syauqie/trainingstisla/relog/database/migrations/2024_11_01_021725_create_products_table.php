@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->unsignedBigInteger('category_id');
-            $table->string('nama_produk', 100);
-            $table->string('satuan', 50);
-            $table->unsignedBigInteger('harga_beli');
-            $table->integer('stok');
-            $table->unsignedBigInteger('harga_jual');
-            $table->integer('diskon')->default(0);
+            $table->string('name', 100);
+            $table->integer('stock');
+            $table->unsignedBigInteger('price');
             $table->timestamps();
 
             // Relasi ke tabel categories

@@ -40,8 +40,8 @@
                                     <div class="col-md-6">
                                         <form method="GET" action="{{ route('products.index') }}">
                                             <div class="input-group">
-                                                <input type="text" name="search" class="form-control" placeholder="Search"
-                                                    value="{{ request('search') }}">
+                                                <input type="text" name="search" class="form-control"
+                                                    placeholder="Search" value="{{ request('search') }}">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                                 </div>
@@ -65,40 +65,49 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            @foreach ($data as $index => $product)
-                                                <tr>
-                                                    <td>{{ $product->id }}</td>
-                                                    <td>{{ $product->nama_produk }}</td>
-                                                    <td>{{ $product->category->nama_kategori }}</td>
-                                                    <td>{{ $product->stok }}</td>
-                                                    <td>{{ formatRupiah($product->harga_beli) }}</td>
-                                                    <td>{{ $product->diskon }}</td>
-                                                    <td>{{ $product->satuan }}</td>
-                                                    <td>{{ formatRupiah($product->harga_jual) }}</td>
-                                                    <td>
-                                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <a href="{{ route('products.edit', $product->id) }}"
-                                                                class="btn btn-sm btn-primary">
-                                                                <i class="fas fa-edit"></i> Edit
-                                                            </a>
-                                                            <a href="#" onclick="confirmDelete({{ $product->id }})"
-                                                                class="btn btn-sm btn-danger">
-                                                                <i class="fas fa-trash"></i> Delete
-                                                            </a>
-                                                        </div>
-                                                        <form id="delete-product-{{ $product->id }}"
-                                                            action="{{ route('products.destroy', $product->id) }}"
-                                                            method="POST" class="d-none">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @if ($data->isEmpty())
+                                            <tr>
+                                                <td colspan="9" class="text-center">Produk tidak ditemukan.</td>
+                                            </tr>
+                                        @else
+                                            <tbody>
+                                                @foreach ($data as $index => $product)
+                                                    <tr>
+                                                        <td>{{ $product->id }}</td>
+                                                        <td>{{ $product->nama_produk }}</td>
+                                                        <td>{{ $product->category->nama_kategori }}</td>
+                                                        <td>{{ $product->stok }}</td>
+                                                        <td>{{ formatRupiah($product->harga_beli) }}</td>
+                                                        <td>{{ $product->diskon }}</td>
+                                                        <td>{{ $product->satuan }}</td>
+                                                        <td>{{ formatRupiah($product->harga_jual) }}</td>
+                                                        <td>
+                                                            <div class="btn-group" role="group"
+                                                                aria-label="Basic example">
+                                                                <a href="{{ route('products.edit', $product->id) }}"
+                                                                    class="btn btn-sm btn-primary">
+                                                                    <i class="fas fa-edit"></i> Edit
+                                                                </a>
+                                                                <a href="#"
+                                                                    onclick="confirmDelete({{ $product->id }})"
+                                                                    class="btn btn-sm btn-danger">
+                                                                    <i class="fas fa-trash"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                            <form id="delete-product-{{ $product->id }}"
+                                                                action="{{ route('products.destroy', $product->id) }}"
+                                                                method="POST" class="d-none">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
+
 
                                 <!-- Pagination -->
                                 <div class="float-right">
@@ -113,7 +122,8 @@
                                             </li>
                                             @for ($i = 1; $i <= $data->lastPage(); $i++)
                                                 <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
-                                                    <a class="page-link" href="{{ $data->url($i) }}">{{ $i }}</a>
+                                                    <a class="page-link"
+                                                        href="{{ $data->url($i) }}">{{ $i }}</a>
                                                 </li>
                                             @endfor
                                             <li class="page-item {{ $data->hasMorePages() ? '' : 'disabled' }}">
@@ -125,6 +135,7 @@
                                         </ul>
                                     </nav>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -140,7 +151,7 @@
 
     <script>
         function confirmDelete(productId) {
-            if (confirm("Are you sure you want to delete this product?")) {
+            if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
                 document.getElementById('delete-product-' + productId).submit();
             }
         }

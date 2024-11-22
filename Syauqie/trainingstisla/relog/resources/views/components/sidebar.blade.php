@@ -24,7 +24,7 @@
                         <a class="nav-link" href="{{ route('products.index') }}">Produk</a>
                     </li>
                     <li class="{{ Request::is('customers') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('users') }}">Member</a>
+                        <a class="nav-link" href="{{ route('customers.index') }}">Member</a>
                     </li>
                     <li class="{{ Request::is('supplier') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('users') }}">Supplier</a>

@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Purchase;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Supplier extends Model
 {
     protected $fillable = [
-        'nama_supplier',
-        'alamat_supplier',
-        'phone_supplier'
+        'name',
+        'address',
+        'contact'
     ];
 
     public function purchases(): HasMany
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Order::class);
     }
 }

@@ -45,11 +45,7 @@ class ProductController extends Controller
         $validateData = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'nama_produk' => 'required|string|max:225',
-            'satuan' => 'required|string|max:225',
-            'harga_beli' => 'required|integer',
             'stok' => 'required|integer',
-            'harga_jual' => 'required|integer',
-            'diskon' => 'nullable|integer',
         ]);
 
         Product::create($validateData);
@@ -82,16 +78,40 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        try {
+            // Validasi input
+            $request->validate([
+                'category_id' => 'required|integer|exists:categories,id', // Pastikan kategori ada di tabel categories
+                'nama_produk' => 'required|string|max:225|unique:products,nama_produk,' . $product->id,
+                'stok' => 'required|integer|min:0',
+            ]);
+
+            // Update data produk
+            $product->update([
+                'category_id' => $request->category_id,
+                'nama_produk' => $request->nama_produk,
+                'satuan' => $request->satuan,
+                'stok' => $request->stok,
+            ]);
+
+            // Redirect ke halaman yang sesuai dengan pesan sukses
+            return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');
+
+        } catch (\Exception $e) {
+            // Jika ada error, redirect kembali dengan pesan error
+            return redirect()->back()->withErrors(['error' => 'Gagal memperbarui produk: ' . $e->getMessage()]);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with('succes', 'Kamu berhasil untuk menghapus dia dari masa lalu');
     }
 }

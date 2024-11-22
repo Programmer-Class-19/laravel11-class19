@@ -55,7 +55,8 @@
                                             <strong>{{ $search }}</strong>.
                                         </p>
                                     </div>
-                                @else
+                                @endif
+
                                     <div class="table-responsive">
                                         <table class="table-striped table">
                                             <tr>
@@ -64,61 +65,67 @@
                                                 <th>Deskripsi</th>
                                                 <th>Aksi</th>
                                             </tr>
-                                            @foreach ($data as $index => $category)
+                                            @if ($data->isEmpty())
                                                 <tr>
-                                                    <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}
-                                                    </td>
-                                                    <td>{{ $category->nama_kategori }}</td>
-                                                    <td>{{ $category->description ?? 'Ngga ada deskripsi' }}</td>
-                                                    <td>
-                                                        <a href="{{ route('categories.edit', $category->id) }}"
-                                                            class="btn btn-icon btn-sm icon-left btn-primary d-inline">
-                                                            <i class="far fa-edit"></i> Edit
-                                                        </a>
-                                                        <a href="#" onclick="confirmDelete({{ $category->id }})"
-                                                            class="btn btn-icon btn-sm icon-left btn-danger d-inline"
-                                                            style="cursor:pointer">
-                                                            <i class="fas fa-exclamation-triangle"></i> Delete
-                                                        </a>
-                                                        <form id="delete-category-{{ $category->id }}"
-                                                            action="{{ route('categories.destroy', $category->id) }}"
-                                                            method="POST" class="d-none">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    </td>
+                                                    <td colspan="9" class="text-center">Produk tidak ditemukan.</td>
                                                 </tr>
-                                            @endforeach
+                                            @else
+                                                @foreach ($data as $index => $category)
+                                                    <tr>
+                                                        <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}
+                                                        </td>
+                                                        <td>{{ $category->nama_kategori }}</td>
+                                                        <td>{{ $category->description ?? 'Ngga ada deskripsi' }}</td>
+                                                        <td>
+                                                            <a href="{{ route('categories.edit', $category->id) }}"
+                                                                class="btn btn-icon btn-sm icon-left btn-primary d-inline">
+                                                                <i class="far fa-edit"></i> Edit
+                                                            </a>
+                                                            <a href="#" onclick="confirmDelete({{ $category->id }})"
+                                                                class="btn btn-icon btn-sm icon-left btn-danger d-inline"
+                                                                style="cursor:pointer">
+                                                                <i class="fas fa-exclamation-triangle"></i> Delete
+                                                            </a>
+                                                            <form id="delete-category-{{ $category->id }}"
+                                                                action="{{ route('categories.destroy', $category->id) }}"
+                                                                method="POST" class="d-none">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                @endif
                                         </table>
                                     </div>
 
 
-                                <div class="float-right">
-                                    <nav>
-                                        <ul class="pagination">
-                                            <li class="page-item {{ $data->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $data->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            @for ($i = 1; $i <= $data->lastPage(); $i++)
-                                                <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $data->url($i) }}">{{ $i }}</a>
+                                    <div class="float-right">
+                                        <nav>
+                                            <ul class="pagination">
+                                                <li class="page-item {{ $data->onFirstPage() ? 'disabled' : '' }}">
+                                                    <a class="page-link" href="{{ $data->previousPageUrl() }}"
+                                                        aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
                                                 </li>
-                                            @endfor
-                                            <li class="page-item {{ $data->hasMorePages() ? '' : 'disabled' }}">
-                                                <a class="page-link" href="{{ $data->nextPageUrl() }}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                @endif
+                                                @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                                    <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
+                                                        <a class="page-link"
+                                                            href="{{ $data->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                                <li class="page-item {{ $data->hasMorePages() ? '' : 'disabled' }}">
+                                                    <a class="page-link" href="{{ $data->nextPageUrl() }}"
+                                                        aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
 
 
                             </div>

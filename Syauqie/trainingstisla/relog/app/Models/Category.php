@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_kategori',
+        'name',
         'description'  // Perbaikan di sini
     ];
 

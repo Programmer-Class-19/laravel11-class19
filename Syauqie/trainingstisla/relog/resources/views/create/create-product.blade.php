@@ -36,49 +36,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Satuan</label>
-                                            <div class="input-group">
-                                                <input placeholder="Satuan" name="satuan"
-                                                    class="form-control @error('satuan') is-invalid @enderror"
-                                                    type="text" value="{{ old('satuan') }}" required>
-                                                @error('satuan')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-4">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Harga Beli</label>
-                                            <div class="input-group">
-                                                <input placeholder="Harga beli" name="harga_beli"
-                                                    class="form-control @error('harga_beli') is-invalid @enderror"
-                                                    type="number" value="{{ old('harga_beli') }}" required min="0" onkeyup="formatRupiah(this)">
-                                                @error('harga_beli')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Harga Jual</label>
-                                            <div class="input-group">
-                                                <input placeholder="Harga jual" name="harga_jual"
-                                                    class="form-control @error('harga_jual') is-invalid @enderror"
-                                                    type="number" value="{{ old('harga_jual') }}" required min="0" onkeyup="formatRupiah(this)">
-                                                @error('harga_jual')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="row mb-4">
                                     <div class="col-md-6">
@@ -94,18 +51,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Diskon</label>
-                                            <input placeholder="Diskon harga" name="diskon"
-                                                class="form-control @error('diskon') is-invalid @enderror" type="number"
-                                                value="{{ old('diskon', 0) }}" min="0" step="0.01">
-                                            @error('diskon')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="row mb-4">
                                     <div class="col-md-6">

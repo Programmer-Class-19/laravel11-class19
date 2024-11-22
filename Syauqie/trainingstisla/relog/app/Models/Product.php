@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\PurchaseDetail;
 use Illuminate\Support\Carbon;
+use App\Models\TransactionItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,12 +18,9 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
-        'nama_produk',
-        'satuan',
-        'harga_beli',
-        'stok',
-        'harga_jual',
-        'diskon',
+        'name',
+        'stock',
+        'price',
     ];
 
 
@@ -31,27 +29,20 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function purchasedetail(): HasMany
-    // {
-    //     return $this->hasMany(PurchaseDetail::class);
-    // }
-
-    public function purchasedetail(): HasMany
+    public function transactionitems(): HasMany
     {
-        return $this->hasMany(PurchaseDetail::class);
+        return $this->hasMany(TransactionItem::class);
     }
 
-    // Tentukan tipe primary key sebagai string
     protected $keyType = 'string';
 
     // Nonaktifkan auto-increment untuk primary key
     public $incrementing = false;
 
-    // Fungsi untuk membuat ID khusus dengan format seperti invoice
     public static function generateInvoiceId()
     {
         $prefix = 'INV-';
-        $uniqueId = Str::upper(Str::random(8)); // Membuat ID acak 8 karakter
+        $uniqueId = Str::upper(Str::random(8));
         return $prefix . $uniqueId;
     }
 
@@ -65,8 +56,8 @@ class Product extends Model
             if (empty($model->id)) {
                 do {
                     $id = self::generateInvoiceId();
-                } while (self::where('id', $id)->exists()); // Pastikan ID unik
-                $model->id = $id; // Set ID ke model
+                } while (self::where('id', $id)->exists());
+                $model->id = $id;
             }
         });
     }

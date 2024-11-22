@@ -85,7 +85,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('ui.update-category', compact('category'));
+        return view('update.update-category', compact('category'));
     }
 
     /**
