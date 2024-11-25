@@ -39,15 +39,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Varian</label>
-                                    <input placeholder="Masukkan varian produk" name="varian"
-                                        class="form-control @error('varian') is-invalid @enderror" type="text"
-                                        value="{{ old('varian') }}">
-                                    @error('varian')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
 
                                 <!-- Stock -->
                                 <div class="form-group">

@@ -20,7 +20,6 @@ class Product extends Model
         'name',
         'stock',
         'price',
-        'varian'
     ];
 
 

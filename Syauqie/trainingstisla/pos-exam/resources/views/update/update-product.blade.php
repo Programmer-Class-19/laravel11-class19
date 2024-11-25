@@ -41,16 +41,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Varian Produk</label>
-                                    <input placeholder="Tambah barang" name="varian"
-                                        class="form-control @error('varian') is-invalid @enderror" type="text"
-                                        value="{{ old('varian', $data->varian) }}" required>
-                                    @error('varian')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 <!-- Stock -->
                                 <div class="form-group">
                                     <label>Stok</label>

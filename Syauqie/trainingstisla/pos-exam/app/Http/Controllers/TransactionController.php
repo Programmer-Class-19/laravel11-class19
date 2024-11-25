@@ -13,7 +13,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::with('transactionItems.product')->get();
+        return view('ui.features-transaction', compact('transaction'));
     }
 
     /**

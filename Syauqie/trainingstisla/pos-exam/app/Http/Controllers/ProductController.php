@@ -45,7 +45,6 @@ class ProductController extends Controller
             $validateData = $request->validate([
                 'category_id' => 'required|exists:categories,id',
                 'name' => 'required|string|max:225',
-                'varian' => 'nullable|string|max:225',
                 'stock' => 'required|integer',
                 'price' => 'required|string', // Validasi sebagai string untuk menerima input dengan titik
             ]);
@@ -93,7 +92,6 @@ class ProductController extends Controller
             $request->validate([
                 'category_id' => 'nullable|integer|exists:categories,id', // kategori boleh kosong, pastikan valid
                 'name' => 'nullable|string|max:225|unique:products,name,' . $product->id, // pastikan nama tidak duplikat, kecuali untuk produk ini
-                'varian' => 'nullable|string|max:225', // pastikan nama tidak duplikat, kecuali untuk produk ini
                 'stock' => 'nullable|integer|min:0', // stok boleh kosong, tapi jika ada harus >= 0
                 'price' => 'nullable|string|regex:/^[0-9,]+$/', // harga boleh kosong, tapi jika ada hanya angka dan koma
             ]);
@@ -105,7 +103,6 @@ class ProductController extends Controller
             $product->update([
                 'category_id' => $request->has('category_id') ? $request->category_id : $product->category_id,
                 'name' => $request->has('name') ? $request->name : $product->name,
-                'varian' => $request->has('varian') ? $request->varian : $product->varian,
                 'stock' => $request->has('stock') ? $request->stock : $product->stock,
                 'price' => $request->has('price') ? (int) $price : $product->price,
             ]);

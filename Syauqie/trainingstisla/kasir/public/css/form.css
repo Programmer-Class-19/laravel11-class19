@@ -1,0 +1,23 @@
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.card-header h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-submit {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #004085;
+    color: #fff;
+}
+
+.input-group-text {
+    background-color: #f0f0f0;
+    border: 1px solid #ced4da;
+}

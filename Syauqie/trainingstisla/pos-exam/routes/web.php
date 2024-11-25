@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransactionController;
 
 Route::middleware(['auth'])->group(function () {
 
@@ -25,4 +27,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('suppliers', SupplierController::class);
 
     Route::resource('orders', OrderController::class);
+
+    Route::resource('transactions', TransactionController::class);
 });
