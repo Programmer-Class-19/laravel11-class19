@@ -1,151 +1,149 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Invoice')
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Transaction</h1>
+                <h1>Invoice</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('transactions.create') }}" class="btn btn-primary">Add New Product</a>
+                    <a href="" class="btn btn-primary">New Transaction</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Transaction</div>
+                    <div class="breadcrumb-item">Invoice</div>
                 </div>
             </div>
+
             <div class="section-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>All Transaction</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-3">
+                <div class="invoice">
+                    <div class="invoice-print">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="invoice-title">
+                                    <h2>Invoice</h2>
+                                    <div class="invoice-number">Order #12345</div>
+                                </div>
+                                <hr>
+                                <div class="row">
                                     <div class="col-md-6">
-                                        <select class="form-control selectric">
-                                            <option>Action For Selected</option>
-                                            <option>Move to Draft</option>
-                                            <option>Move to Pending</option>
-                                            <option>Delete Permanently</option>
-                                        </select>
+                                        <address>
+                                            <strong>Billed To:</strong><br>
+                                            Ujang Maman<br>
+                                            1234 Main<br>
+                                            Apt. 4B<br>
+                                            Bogor Barat, Indonesia
+                                        </address>
                                     </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <address>
+                                            <strong>Shipped To:</strong><br>
+                                            Muhamad Nauval Azhar<br>
+                                            1234 Main<br>
+                                            Apt. 4B<br>
+                                            Bogor Barat, Indonesia
+                                        </address>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
-                                        <form method="GET" action="{{ route('transactions.index') }}">
-                                            <div class="input-group">
-                                                <input type="text" name="search" class="form-control"
-                                                    placeholder="Search" value="{{ request('search') }}">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <address>
+                                            <strong>Payment Method:</strong><br>
+                                            Visa ending **** 4242<br>
+                                            ujang@maman.com
+                                        </address>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <address>
+                                            <strong>Order Date:</strong><br>
+                                            September 19, 2018<br><br>
+                                        </address>
                                     </div>
                                 </div>
-
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>User ID</th>
-                                                <th>Type</th>
-                                                <th>Total</th>
-                                                <th>Date</th>
-                                                <th>Items</th>
-                                            </tr>
-                                        </thead>
-                                        @if ($data->isEmpty())
-                                            <tr>
-                                                <td colspan="9" class="text-center">Produk tidak ditemukan.</td>
-                                            </tr>
-                                        @else
-                                            <tbody>
-                                                @foreach ($transactions as $index => $transaction)
-                                                    <tr>
-                                                        <td>{{ $transaction->id }}</td>
-                                                        <td>{{ $transaction->user_id }}</td>
-                                                        <td>{{ ucfirst($transaction->transaction_type) }}</td>
-                                                        <td>{{ number_format($transaction->total, 0, ',', '.') }}</td>
-                                                        <td>{{ $transaction->transaction_date }}</td>
-                                                        <td>
-                                                            <ul>
-                                                                @foreach ($transaction->transactionItems as $item)
-                                                                    <li>
-                                                                        {{ $item->product->name }} -
-                                                                        {{ $item->quantity }} x
-                                                                        {{ number_format($item->price, 0, ',', '.') }} =
-                                                                        {{ number_format($item->total, 0, ',', '.') }}
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn-group" role="group"
-                                                                aria-label="Basic example">
-                                                                <a href="{{ route('transactions.edit', $product->id) }}"
-                                                                    class="btn btn-sm btn-primary">
-                                                                    <i class="fas fa-edit"></i> Edit
-                                                                </a>
-                                                                <a href="#" onclick="confirmDelete(this)"
-                                                                    data-inv="{{ $product->id }}"
-                                                                    class="btn btn-icon btn-sm icon-left btn-danger d-inline"
-                                                                    style="cursor:pointer">
-                                                                    <i class="fas fa-exclamation-triangle"></i> Delete
-                                                                </a>
-
-                                                                <form id="delete-product-{{ $product->id }}"
-                                                                    action="{{ route('transactions.destroy', $product->id) }}"
-                                                                    method="POST" class="d-none">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                </form>
-
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                        @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-                                <!-- Pagination -->
-                                <div class="float-right">
-                                    <nav>
-                                        <ul class="pagination">
-                                            <li class="page-item {{ $data->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $data->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            @for ($i = 1; $i <= $data->lastPage(); $i++)
-                                                <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $data->url($i) }}">{{ $i }}</a>
-                                                </li>
-                                            @endfor
-                                            <li class="page-item {{ $data->hasMorePages() ? '' : 'disabled' }}">
-                                                <a class="page-link" href="{{ $data->nextPageUrl() }}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
                             </div>
                         </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="section-title">Order Summary</div>
+                                <p class="section-lead">All items here cannot be deleted.</p>
+                                <div class="table-responsive">
+                                    <table class="table-striped table-hover table-md table">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Quantity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mouse Wireless</td>
+                                            <td class="text-center">$10.99</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-right">$10.99</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Keyboard Wireless</td>
+                                            <td class="text-center">$20.00</td>
+                                            <td class="text-center">3</td>
+                                            <td class="text-right">$60.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Headphone Blitz TDR-3000</td>
+                                            <td class="text-center">$600.00</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-right">$600.00</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-lg-8">
+                                        <div class="section-title">Payment Method</div>
+                                        <p class="section-lead">The payment method that we provide is to make it easier for
+                                            you to pay invoices.</p>
+                                        <div class="images">
+                                            <img src="{{ asset('img/payment/visa.png') }}" alt="visa">
+                                            <img src="{{ asset('img/payment/jcb.png') }}" alt="jcb">
+                                            <img src="{{ asset('img/payment/mastercard.png') }}" alt="mastercard">
+                                            <img src="{{ asset('img/payment/paypal.png') }}" alt="paypal">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 text-right">
+                                        <div class="invoice-detail-item">
+                                            <div class="invoice-detail-name">Subtotal</div>
+                                            <div class="invoice-detail-value">$670.99</div>
+                                        </div>
+                                        <div class="invoice-detail-item">
+                                            <div class="invoice-detail-name">Shipping</div>
+                                            <div class="invoice-detail-value">$15</div>
+                                        </div>
+                                        <hr class="mt-2 mb-2">
+                                        <div class="invoice-detail-item">
+                                            <div class="invoice-detail-name">Total</div>
+                                            <div class="invoice-detail-value invoice-detail-value-lg">$685.99</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-md-right">
+                        <div class="float-lg-left mb-lg-0 mb-3">
+                            <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
+                                Payment</button>
+                            <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
+                        </div>
+                        <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
                     </div>
                 </div>
             </div>
@@ -154,18 +152,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
-    <script src="{{ asset('js/page/features-posts.js') }}"></script>
+    <!-- JS Libraies -->
 
-    <script>
-        function confirmDelete(element) {
-            // Ambil nilai INV dari atribut data-inv
-            const inv = element.getAttribute('data-inv');
-            const confirmAction = confirm(`Are you sure you want to delete product with ID ${inv}?`);
-            if (confirmAction) {
-                // Jika dikonfirmasi, temukan dan submit form penghapusan
-                document.getElementById(`delete-product-${inv}`).submit();
-            }
-        }
-    </script>
+    <!-- Page Specific JS File -->
 @endpush

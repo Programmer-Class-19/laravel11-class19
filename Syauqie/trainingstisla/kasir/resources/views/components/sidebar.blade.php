@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="{{ url('/') }}" class="nav-link"><i class="fas fa-gauge"></i><span>Dashboard</span></a>
+                <a href="{{ url('/home') }}" class="nav-link"><i class="fas fa-gauge"></i><span>Dashboard</span></a>
             </li>
         </ul>
         <ul class="sidebar-menu">

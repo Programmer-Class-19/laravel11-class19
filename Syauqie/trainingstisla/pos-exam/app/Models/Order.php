@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Models\Customer;
@@ -6,26 +7,23 @@ use App\Models\Supplier;
 use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'supplier_id',
         'customer_id',
-        'order_date',
-        'status',
-        'payment_status',
-        'payment_method',
-        'total_price',
-        'discount',
-        'tax',
         'shipping_address',
-        'shipping_status',
-        'payment_time',
-        'shipping_time',
-        'order_reference'
+        'shipping_city',
+        'shipping_country',
+        'payment_method',
+        'payment_card_number',
+        'subtotal',
+        'shipping_cost',
+        'total',
+        'status'
     ];
 
     /**
@@ -42,6 +40,11 @@ class Order extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
     }
 
     /**

@@ -33,19 +33,12 @@
             </li>
         </ul>
         <ul class="sidebar-menu">
-            <li class="menu-header">Transaksi</li>
-            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill"></i><span>Transaksi</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ Request::is('categories') ? 'active' : '' }}">
-                        <a class="nav-link" href="#">Kasir</a>
-                    </li>
-                    <li class="{{ Request::is('products') ? 'active' : '' }}">
-                        <a class="nav-link" href="#">Pembelian dari supplier</a>
-                    </li>
-                </ul>
+            <li class="menu-header">Dashboard</li>
+            <li class="nav-item dropdown {{ $type_menu === 'transactions' ? 'active' : '' }}">
+                <a href="{{ route('transactions.index') }}" class="nav-link"><i class="fas fa-money-bill"></i><span>Transaksi</span></a>
             </li>
         </ul>
+
         <ul class="sidebar-menu">
             <li class="menu-header">Report</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">

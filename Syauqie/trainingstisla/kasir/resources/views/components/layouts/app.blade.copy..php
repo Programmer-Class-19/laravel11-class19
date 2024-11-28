@@ -48,7 +48,7 @@
             @include('components.sidebar')
 
             <!-- Content -->
-            @yield('main')
+            {{ $slot }}
 
             <!-- Footer -->
             @include('components.footer')
@@ -72,3 +72,4 @@
 </body>
 
 </html>
+

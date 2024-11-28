@@ -28,9 +28,9 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function transactionitems(): HasMany
+    public function orderItems()
     {
-        return $this->hasMany(TransactionItem::class);
+        return $this->hasMany(OrderItem::class);
     }
 
     protected $keyType = 'string';

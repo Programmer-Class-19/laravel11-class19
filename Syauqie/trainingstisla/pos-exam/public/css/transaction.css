@@ -1,0 +1,53 @@
+
+.card-header h4 {
+    font-weight: bold;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.btn-primary,
+.btn-success {
+    width: 100%;
+}
+
+.section-header-button a {
+    margin-right: 10px;
+}
+
+.table-responsive {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.card-body h4.card-title {
+    margin-bottom: 15px;
+}
+
+.d-flex .justify-content-between {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.table th,
+.table td {
+    font-size: 16px;
+}

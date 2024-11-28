@@ -13,16 +13,12 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->string('product_id');
-            $table->unsignedBigInteger('quantity');
-            $table->unsignedBigInteger('price');
-
+            $table->foreignId('order_id')->constrained()->onDelete('cascade'); // Foreign key ke tabel orders
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Foreign key ke tabel products
+            $table->integer('quantity')->default(1);
+            $table->integer('price');
+            $table->integer('total'); // total = quantity * price
             $table->timestamps();
-
-            // relasi
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
