@@ -1,0 +1,41 @@
+[
+    {
+        "nama": "Ardi Juni Yansyah",
+        "umur": 19,
+        "nrp" : "0012062005",
+        "jurusan": "Teknik Informatika",
+        "pekerjaan": "Fullstack Web Developers",
+        "hobby": [
+            "coding",
+            "desain",
+            "gaming"
+        ],
+        "lulus":true,
+        "pembimbing": {
+            "pembimbing1": "M Ubaydillah El Ghifary",
+            "pembimbing2": "M Hafif al busyroh",
+            "pembimbing3": "Mas Ilyasa",
+            "pembimbing4": "Mas Made"
+        }
+    },
+
+    {
+        "nama": "Ghibto Syidqi",
+        "umur": 19,
+        "nrp" : "0002062005",
+        "jurusan": "Desain Grafis",
+        "pekerjaan": "Desainer",
+        "hobby": [
+            "coding",
+            "desain",
+            "gaming"
+        ],
+        "lulus":true,
+        "pembimbing": {
+            "pembimbing1": "Kak Lita",
+            "pembimbing2": "Bu Khoir",
+            "pembimbing3": "Pak Dayat",
+            "pembimbing4": "Mas Misal"
+        }
+    }
+]
